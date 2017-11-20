@@ -29,7 +29,7 @@ row_output_path = 'Row_Sorts'
 
 # list of all archer .dat files in data subdirectory
 list_of_files = glob.glob(os.path.join(data_directory, './*.dat'))
-full_data_frame = pd.DataFrame()
+# full_data_frame = pd.DataFrame() # I think I called this full_df instead and this line may not be used
 
 # initialize dictionaries
 archer_list = {}
@@ -64,6 +64,8 @@ for index, file_ in enumerate(list_of_files):
     # # ... Archer_150 should be 101306.dat
     # print(archer_list[index + 1])
     # print(file_)
+    # # Create archer_dat_dict wil keys Archer_1, Archer_2 etc
+    # # and load in the corresponding data files as DataFrames to be values matching those keys
     archer_dat_dict[archer_list[index + 1]] = pd.read_table(file_, sep = ',', \
                        names = ['Date','Score','Grade','Gender','School','Format'])
 
@@ -78,18 +80,21 @@ full_df = pd.concat(archer_dat_dict.values(), ignore_index = False)
 
 # strip trailing and leading whitespace and capitalize only first letter of each word
 # Also replace / with __ in strings because / can't be used in file names
-full_df_strings = full_df.select_dtypes(['object'])
+full_df_strings = full_df.select_dtypes(['object'])# got errors with dates so this line makes sure it only messes with string objects
 full_df[full_df_strings.columns] = \
     full_df_strings.apply(lambda x: x.str.strip().str.title().str.replace('/', '__'))
 
-list_of_dates = pd.unique(full_df['Date'])
+list_of_dates = pd.unique(full_df['Date'])# note the pd.unique command; should be self-explanotry
 list_of_scores = pd.unique(full_df['Score'])
 list_of_grades = pd.unique(full_df['Grade'])
 list_of_genders = pd.unique(full_df['Gender'])
 list_of_schools = pd.unique(full_df['School'])
 list_of_formats = pd.unique(full_df['Format'])
 
-
+# first we seed dictionaries with empty lists to fill later
+# Did I need to do this step?  I think I did but suddenly not sure.
+# Used lists so can use .append() command.  Could maybe do this another way.
+# Also, print out lists above to make sure they're correct (into Data_Overview.txt)
 print("\n__________________________________\n")
 print("List_of_Dates: \n")
 for index, date in enumerate(list_of_dates):
@@ -135,8 +140,8 @@ print("\n__________________________________\n")
 print("Total number of Archery scores (all): ", np.shape(full_df)[0])
 
 
-# fill grouping dictionaries - each group will have one dictionary which is just the scores
-# and the other will be the entire archer dataframe for each archer in that group
+# fill grouping dictionaries - each group will have one dictionary which is just the scores (score dicts)
+# and the other will be the entire archer dataframe for each archer in that group (row dicts)
 for index, date in enumerate(list_of_dates):
     date_scores = full_df.loc[full_df['Date'] == date]
     score_sort_by_date_dict[date].append(date_scores['Score'])
@@ -166,6 +171,8 @@ for index, format in enumerate(list_of_formats):
     score_sort_by_format_dict[format].append(format_scores['Score'])
     row_sort_by_format_dict[format].append(format_scores)
 
+    
+# directory sorting for printing out to proper places
 date_output_directory = '{}\Sort_By_Date_Scores'.format(score_output_path)
 grade_output_directory = '{}\Sort_By_Grade_Scores'.format(score_output_path)
 gender_output_directory = os.path.join(score_output_path, 'Sort_By_Gender_Scores')
@@ -173,6 +180,7 @@ school_output_directory = os.path.join(score_output_path, 'Sort_By_School_Scores
 format_output_directory = os.path.join(score_output_path, 'Sort_By_Format_Scores')
 
 
+# # iterate through all score dicts and leave behind numerical only score files in proper folders
 for key, value in score_sort_by_date_dict.items():
     file_out_name = '{}.txt'.format(key)
     if not os.path.exists(date_output_directory):
@@ -183,6 +191,7 @@ for key, value in score_sort_by_date_dict.items():
     for index, entry in enumerate(score_sort_by_date_dict[key]):
         print(entry)
 
+# # iterate through all rows dicts and leave behind DataFrame files in proper folders
 date_output_directory = '{}\Sort_By_Date_Rows'.format(row_output_path)
 for key, value in row_sort_by_date_dict.items():
     file_out_name = '{}.txt'.format(key)
@@ -289,9 +298,10 @@ for key, value in row_sort_by_format_dict.items():
     with pd.option_context('display.max_rows', None, 'display.max_columns', None):
         print(row_sort_by_format_dict[key])
 
-# print to 'Data_Overview.txt'
+        
+# print to 'Data_Overview.txt' again
 file_out_name = 'Data_Overview.txt'
-fd = open(file_out_name, 'a')  # create and/or open file in write mode
+fd = open(file_out_name, 'a')  # with 'a' = append instead of 'w' - write
 sys.stdout = fd  # Now your file is used by print as destination
 
 print("____________________________________")
@@ -299,7 +309,7 @@ print("____________________________________")
 print("____________________________________")
 print("____________________________________")
 
-
+#Just some general Data info - maybe add just standard devations here where the means are calculated for easy viewing
 print("\n======================================\n")
 for key, value in score_sort_by_date_dict.items():
     print("\n------------------------------------\n")
@@ -334,11 +344,13 @@ for key, value in score_sort_by_format_dict.items():
     print("{}_median score: ".format(key), np.median(score_sort_by_format_dict[key]))
     print("\n------------------------------------\n")
 
-# print to 'Dictionary_Keys.txt'
+    
+# now print to 'Dictionary_Keys.txt'
 file_out_name = 'Dictionary_Examples.txt'
 fd = open(file_out_name, 'w')  # create and/or open file in write mode
 sys.stdout = fd  # Now your file is used by print as destination
 
+#Here just showing everyone how to access dictionaries since they seemed new
 print("Example of dictionary use:\n")
 print("\n\n---------------------------------------------")
 print("Example 1 - score_sort_by_date_dict['3__3__2017']:")
@@ -368,6 +380,7 @@ file_out_name = 'Dictionary_Keys.txt'
 fd = open(file_out_name, 'w')  # create and/or open file in write mode
 sys.stdout = fd  # Now your file is used by print as destination
 
+# A list of all the dictionaries and their keys, for reference
 print("\n============================\n")
 print("Dictionary keys:")
 print("\n============================\n")
@@ -423,7 +436,8 @@ file_out_name = 'Full_Archer_List.txt'
 fd = open(file_out_name, 'w')  # create and/or open file in write mode
 sys.stdout = fd  # Now your file is used by print as destination
 
-k = 0
+#Here is an example of accessing archer_dat_dict, recall each value is a DataFrame, keys are Archer_1, Archer_2, etc
+k = 0 # this k indexing is just for iterating the naming of Archer_k, probably coulda just used the dict keys 
 for key, archer in archer_dat_dict.items():
 
     k += 1
@@ -458,7 +472,7 @@ file_path = 'Score_Sorts\Sort_By_Date_Scores'
 file_name = '1__1__2014.txt'
 file_to_read = os.path.join(file_path, file_name)
 
-# # Use this one to read in data from Row_Sorts directory
+# # Use this block to read in data from Row_Sorts directory
 # df = pd.read_table(file_to_read, names = ['Date','Score','Grade','Gender','School','Format'])
 # print(df)
 # print("\n=================================================================================\n")
@@ -471,7 +485,7 @@ file_to_read = os.path.join(file_path, file_name)
 
 # # OR
 
-# # Use this one to read in data from Score_Sorts directory
+# # Use this block to read in data from Score_Sorts directory
 score_file = pd.read_table(file_to_read)
 print(score_file)
 print("\n=================================================================================\n")
@@ -490,7 +504,7 @@ print("You should also be able to load in the Score_Sorts files with R, if you w
 
 # # plotting
 # sns.set(style = "ticks")
-# # sort by date
+# # sort by date - note conversion to datetime format seems necessary for proper sorting/plotting of dates
 # full_df['Date'] = pd.to_datetime(full_df.Date)
 # full_df_by_date = full_df.sort_values('Date')
 # full_df_by_grade = full_df.sort_values('Grade')
