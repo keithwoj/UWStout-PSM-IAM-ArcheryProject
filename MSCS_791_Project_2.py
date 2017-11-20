@@ -144,7 +144,7 @@ print("Total number of Archery scores (all): ", np.shape(full_df)[0])
 # and another which contains the entire rows, concatenated as Dataframes, for each score in some subgroup (row dicts)
 for index, date in enumerate(list_of_dates):
     date_scores = full_df.loc[full_df['Date'] == date]  ## THIS IS HOW YOU ACCESS SPECIFIC ROWS FROM DATAFRAMES MATCHING CONDITION
-    score_sort_by_date_dict[date].append(date_scores['Score'])## SQUARE BRACKETS WITH COLUMN ANME IS HOW YOU ACCESS COLUMNS
+    score_sort_by_date_dict[date].append(date_scores['Score'])## SQUARE BRACKETS WITH COLUMN NAME IS HOW YOU ACCESS WHOLE COLUMNS
     row_sort_by_date_dict[date].append(date_scores)
 
 for index, score in enumerate(list_of_scores):
