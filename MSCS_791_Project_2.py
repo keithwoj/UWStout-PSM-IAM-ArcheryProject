@@ -143,8 +143,8 @@ print("Total number of Archery scores (all): ", np.shape(full_df)[0])
 # fill grouping dictionaries - each group will have one dictionary which is just the scores (score dicts)
 # and the other will be the entire archer dataframe for each archer in that group (row dicts)
 for index, date in enumerate(list_of_dates):
-    date_scores = full_df.loc[full_df['Date'] == date]
-    score_sort_by_date_dict[date].append(date_scores['Score'])
+    date_scores = full_df.loc[full_df['Date'] == date]  ## THIS IS HOW YOU ACCESS SPECIFIC ROWS FROM DATAFRAMES MATCHING CONDITION
+    score_sort_by_date_dict[date].append(date_scores['Score'])## SQUARE BRACKETS WITH COLUMN ANME IS HOW YOU ACCESS COLUMNS
     row_sort_by_date_dict[date].append(date_scores)
 
 for index, score in enumerate(list_of_scores):
