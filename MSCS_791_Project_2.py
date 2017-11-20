@@ -48,6 +48,10 @@ score_sort_by_format_dict = {}
 
 
 # intialize a dictionary of archers to use as key names in dataframe dictionary
+# note that the funky indexing is in order to sort them so that Archer_1
+# is the first data file, i.e.:  26589.dat.  If this wasn't done then 
+# Archer_1 would correspond to 100478.dat, due to Windows sorting things
+# differently than Python
 for k in range(1, 43):
     archer_list[k] = 'Archer_{:d}'.format(k + 108)
 for k in range(108):
