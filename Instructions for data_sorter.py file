@@ -15,12 +15,14 @@ the "Score" files, but in that case you'll have yourself a pandas DataFrame obje
 this information already exists inside a dictionary, so loading in these .txt files is a bit redundant; better to just access the
 dictionary.  Printing them out in this manner is just helpful to understand what is happening with the sorting inside the dictionaries;
 if you look at the lines of code which print to a particular file, you can see how those DataFrames are being accessed from the 
-dictionaries to print out to those files.  For instance, If you wanted to access the information in the  "1__3__2017.txt" file, 
-instead of loading the file in you can just access the existing dictionary row_sort_by_date_dict using the key 1__3__2017.  Like so:
+dictionaries to print out to those files.  For instance, if you wanted to access the information in the  "1__3__2017.txt" file in 
+the Sort_By_Date_Rows folder, instead of loading the file in, you can just access the existing dictionary row_sort_by_date_dict 
+using the key '1__3__2017'.  Like so:
 
 my_data_subset = row_sort_by_date_dict['1__3__2017']
 
-Or for grade 3 data rows you could say
+Likewise, for Grade 3 data rows, you could fiddle with loading in the Grade_3.txt file from the Sort_By_Grade_Rows folder, 
+or you could just say
 
 my_other_data_subset = row_sort_by_grade_dict['Grade_3']
 
@@ -81,3 +83,7 @@ being printed out with extra text for readability.  testing.txt is just a place 
 to make sure that it's what you think it is.  (I think it's much easier to read long lists in a .txt file than in a console window, but
 if you would like to print back to console in PyCharm, the very last line of the code can be put anywhere to restrore the default printing
 behaviour.)
+
+10.  If you do decide to load in any of the .txt files to use that way, instead of using a dictionary, make sure to either place that file
+in your working directory before loading it, or, better yet, utilize the os.path.join() command as I have done to conveniently access 
+subfolders.  Look at the code for examples of how this works.
