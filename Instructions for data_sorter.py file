@@ -31,21 +31,21 @@ find the Grade_3 archers who are boys, you can use the DataFrame.loc command.  F
 grade_3_boys_scores = my_other_data_subset.loc[my_other_data_subset['Gender'] == 'Boys']
 
 and this should return only those rows where the gender is Boys. Note that for dataframes the .loc() command returns rows.  
-To access columns, you just use sqaure brackets with string quotes, as in the baove lines of code.  This is also
-how you access dictionaries.
+To access columns, you just use sqaure brackets with string quotes, as in the above lines of code.  (This is also
+how you access dictionaries.)
 
 6.  Dictionaries contain key, value pairs.  Input a key, get out a matching value.  Dictionaries are unordered, 
 so there is no index associated with the (key, value); this mean you cannot iterate through a dictionary with integer
-indexing like you can with lists and other things.  There are ways to iterate over dictionaries, for instance with the 
-.items() function.  you can say 
+indexing like you can with lists and other things.  There are ways to iterate over dictionaries however; for instance, with the 
+.items() function, you can say 
 
 for key, value in row_sort_by_score_dict.items():
      print("KEY: ", key)
      print("VALUE: ", value)
 
-but note that while the key will always match the proper value within a single iteration, the key, value pairs will come 
-out in any old order since the dictionary doesn't remember what order you put them in.    This is what it means for dictionaries 
-to be "unordered".
+to print out each key and value.  But while the key will always match the proper value within a single iteration, the key, value 
+pairs will come out in any old order, because the dictionary doesn't remember what order you put them in.    This is what it means 
+for dictionaries to be "unordered".  A subtle point, but sometimes it does come up and it helps to be familiar with the concept.
 
 In some dictionaries, the value will be a list (for instance, score dictionaries), while in others they will be DataFrame objects
 (for instance, the rows dictionaries).  If you're unsure you can check with type() function, i.e given our above example we could say.:
