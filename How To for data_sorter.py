@@ -68,3 +68,5 @@ data_sorter.row_sort_by_grade_dict
 gives you that dictionary.  Assuming your script file is in the same location as the file you're importing.  I think this is also 
 true for all objects/variables/etc that my file creates, but this is starting to get outside my expertise so I'm not 100% sure 
 if it's that simple.  But I know it works with dictionaries.
+
+7.  Note that the enumerate() command is great for iterating through lists.  Look through the code for examples of how to use this one.
