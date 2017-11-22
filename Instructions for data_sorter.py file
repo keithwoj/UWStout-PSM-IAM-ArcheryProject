@@ -59,8 +59,7 @@ and calculate the mean, you can use (assuming import numpy as np):
 
 mean_score_all = np.mean(full_df['Score'])
 
-8. Note that you can access any of my dictionaries in your own script by importing my file. Maybe name my file something better than 
-the name I gave it, in hindsight; say, data_sorter.  Then say
+8. Note also that you can access any of my dictionaries in your own script by importing my file.  Then say
 
 import data_sorter
 
