@@ -16,7 +16,7 @@ for file in os.listdir('.'):
 
 #Would like to sort data by month instead
 
-#Sort data by month
+#Sort data by year
 df_bydate = df.sort_values(by = 'Date')
 x = pd.Series(df_bydate['Date'])
 y = pd.Series(df_bydate['Score'])
