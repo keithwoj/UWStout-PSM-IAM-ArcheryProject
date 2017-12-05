@@ -14,8 +14,8 @@ data_directory = '_Data_Files'
 list_of_files = glob.glob(os.path.join(data_directory, './*.dat'))
 
 # initialize dictionaries
-archer_list = {}
-archer_dat_dict = {}
+archer_list = {}# This is just to help in creating the next dictionary and its keys
+archer_dat_dict = {}# This dictionary will store each archer's full dataframe
 
 archer_means_full_dict = {}# This dictionary will store each archer's total mean score
 archer_stds_dict = {}# This dictionary will store each archer's score's std.deviation
