@@ -101,6 +101,7 @@ for key, archer in archer_dat_dict.items():
     archer_stds_dict[key] = np.std(archer['Score'])
 
 # it's easiesst to use dictionaries to create new dataframes
+# Note that these next two things are... wait for it... dictionaries.... OF DICTIONRIES!  mind assplode
 # first dictionary setup to create dataframe with columns "Nmbr_Scores" and "Means"
 new_dict = {'Nmbr_Scores':archer_exp_full_dict, 'Means':archer_means_full_dict, 'Stds':archer_stds_dict}
 # second dictionary for same thing except to compare only scores prior to last grade with means from last grade
