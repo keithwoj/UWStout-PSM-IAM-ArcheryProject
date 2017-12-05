@@ -102,9 +102,10 @@ for key, archer in archer_dat_dict.items():
 
 # it's easiesst to use dictionaries to create new dataframes
 # Note that these next two things are... wait for it... dictionaries.... OF DICTIONARIES!  < mind assplode >
-# first dictionary setup to create dataframe with columns "Nmbr_Scores" and "Means"
+# first dictionary setup to create dataframe with columns "Nmbr_Scores" and "Means" and "Stds" (deviations)
 new_dict = {'Nmbr_Scores':archer_exp_full_dict, 'Means':archer_means_full_dict, 'Stds':archer_stds_dict}
 # second dictionary for same thing except to compare only scores prior to last grade with means from last grade
+# also ignoring std. deviations on this one since I didn't make the dictionary and seems unimportant
 new_dict_pre = {'Nmbr_Scores_pre':archer_exp_pre_dict, 'Means_post':archer_means_post_dict}
 
 #use the dictionaries to create quick new custom dataframes
