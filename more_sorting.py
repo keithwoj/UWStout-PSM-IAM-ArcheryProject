@@ -14,8 +14,8 @@ data_directory = '_Data_Files'
 list_of_files = glob.glob(os.path.join(data_directory, './*.dat'))
 
 # initialize dictionaries
-archer_list = {}# This is just to help in creating the next dictionary and its keys
-archer_dat_dict = {}# This dictionary will store each archer's full dataframe
+archer_list = {}
+archer_dat_dict = {}
 
 archer_means_full_dict = {}# This dictionary will store each archer's total mean score
 archer_stds_dict = {}# This dictionary will store each archer's score's std.deviation
@@ -60,6 +60,7 @@ for index, file_ in enumerate(list_of_files):
 #iterate through each value (each separate archer's dataframe) in archer_dat_dictionary
 for key, archer in archer_dat_dict.items():
     archer['Date'] = pd.to_datetime(archer.Date)# convert date columns to datetime format
+    archer = archer.sort_values('Date')
     archer.index = archer['Date']# make date the 'index' of each dataframe since next methods need "datetime indices"
     monthly_means_full = archer.resample('M').mean()# this takes monthly means using datetime indices
     monthly_std_devs = archer.resample('M').std()# monthly std devs using datetime indices
@@ -77,6 +78,7 @@ for key, archer in archer_dat_dict.items():
     monthly_means_pre.index = (monthly_means_pre.index - monthly_means_pre.index[0]).days
     monthly_std_devs = pd.DataFrame(monthly_std_devs)
     monthly_std_devs.index = (monthly_std_devs.index - monthly_std_devs.index[0]).days
+    archer.index = (archer.index - archer.index[0]).days
 
     # create index to filter out non-string (object) columns so .str methods work
     archer_df_obj = archer.select_dtypes(['object'])
@@ -100,15 +102,13 @@ for key, archer in archer_dat_dict.items():
     # store this archer's std. deviations for each month, ALL months (with more thanone score)
     archer_stds_dict[key] = np.std(archer['Score'])
 
-# it's easiesst to use dictionaries to create new dataframes
-# Note that these next two things are... wait for it... dictionaries.... OF DICTIONARIES!  < mind assplode >
-# first dictionary setup to create dataframe with columns "Nmbr_Scores" and "Means" and "Stds" (deviations)
+# it's easiest to use dictionaries to create new dataframes
+# so create new dictionary as setup to create dataframe with columns "Nmbr_Scores" and "Means"
 new_dict = {'Nmbr_Scores':archer_exp_full_dict, 'Means':archer_means_full_dict, 'Stds':archer_stds_dict}
-# second dictionary for same thing except to compare only scores prior to last grade with means from last grade
-# also ignoring std. deviations on this one since I didn't make the dictionary and seems unimportant
+# second new dictionary for same thing, except only Nmbr_Scores prior to last grade, and means from last grade only
 new_dict_pre = {'Nmbr_Scores_pre':archer_exp_pre_dict, 'Means_post':archer_means_post_dict}
 
-#use the dictionaries to create quick new custom dataframes
+#use these new dictionaries to create quick new custom dataframes
 new_df = pd.DataFrame(new_dict)
 new_df_pre = pd.DataFrame(new_dict_pre)
 
@@ -234,7 +234,7 @@ for index, entry in enumerate(ten_rand_archers):
 # df = XX.drop('Score', 1)
 # # df = XX.drop('Date', 1)
 #
-# print("df.dtypes: \n", df.dtypes)
+# print("df.dtypes: \n", df.dtypes) #checking out data type of each column; they may need to be type 'categorical'
 # print("_________________")
 # print(df)
 #
