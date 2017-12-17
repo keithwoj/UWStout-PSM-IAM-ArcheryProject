@@ -24,7 +24,8 @@ with no post season scores have been reinserted here, with Nmbr_Post_Season_Scor
 ________
 Secondly, there are other three other directories, called Archer_Champs_10, Archer_Champs_15, and Archer_Champs_20.  Each of these files
 contain files like Archer_11_10.csv or Archer_11_15.csv or Archer_11_20.csv, respectively, where the 10, 15, or 20 on the end of those 
-names denotesthe top X% whence those archers were drawn.  So Archer_11_10.csv, Archer_47_10.csv, Archer_50_10.csv, etc, are Archer data from the top 10% of Archers (going by career means), whereas Archer_38_15, for instance, is from the top 15%. Note that of course all archers 
+names denotesthe top X% whence those archers were drawn.  So Archer_11_10.csv, Archer_47_10.csv, Archer_50_10.csv, etc, are Archer data from
+the top 10% of Archers (going by career means), whereas Archer_38_15, for instance, is from the top 15%. Note that of course all archers 
 who are in the top 10% group are also in the top 15 and 20%; in this manner, Archer_11_10.csv Archer_11_15.csv, and Archer_11_20.csv that 
 you'll find in all three foldres, are all the same archer: Archer_11.  (The Archer_X numbers themselves originally corresponded to the order of
 the .dat files as viewed in a Windows directory, but I'm not sure if that's true anymore).  
