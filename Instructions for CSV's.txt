@@ -8,8 +8,8 @@ To myself I've been referring to the groups as "post season" and "champs", respe
 in mind.
 
 When I looked at the post-season group (defined as archers with at least one score within ~April-July of any year), only 24/150 archers 
-were filtered out.  Seemed a bit too large of a subset leftover to be worth exploring separately, but I did go ahead and make a 
-couple files.
+were filtered out.  Seemed mayhap a bit too large of a subset leftover to be worth exploring separately, but I did go ahead and make a 
+couple of files.
 
 _______
 First, let's look at the directory Archer_Post_Season_Rows:
