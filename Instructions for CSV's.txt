@@ -1,0 +1,34 @@
+So previously I talked about two types of "champs":
+
+- those with post season scores, and
+
+- those whose career means within some top x percentile
+
+To myself I've been refer to the groups as "post season" and "champs", respectively, so note that I've named my files that way.
+
+When I looked at the post-season group (defined as archers with at least one score within ~April-July of any year), only 24/150 archers 
+were filtered out.  Seemed a bit too large of a subset leftover to be worth exploring separately, but I did go ahead and make a 
+couple files.
+
+_______
+First, let's look at the directory Archer_Post_Season_Rows:
+
+First, you'll see a bunch of Archer_X.csv files.  These each contain post-season scores from those 126 archers who had at least one.
+They contain the full dataframe data still, i.e: school, grade, score, etc.  After these files, you'll full_post_season_dictionary.csv, 
+which is just the Archer_X rows all concatenated into one file.  So again if you look at the dates in anything in this Post_season file,
+you should see only dates between ~April-July in there.  The other file, called archer_means_vs_nmbr_post_season_scores, is just that:  
+All 150 archers in a list, with their career means next to their "Number of post season scores".  The 24 archers with no post season
+scores have been reinserted here with Nmbr_Post_Season_Scores = 0.
+
+________
+Secondly, there are other three other directories, called Archer_Champs_10, Archer_Champs_15, and Archer_Champs_20.  Each of these files
+contain files like Archer_11_10.csv or Archer_11_15.csv or Archer_11_20.csv, where the 10, 15, or 20 on the end of those things denote 
+the top X% whence those archers were drawn.  So Archer_11_10.csv, Archer_47_10.csv, Archer_50_10.csv, etc, are Archer data from the 
+top 10% of Archers (going by career means), whereas Archer_38_15, for instance, is from the top 15%. Note that of course all archers 
+who are in the top 10% are also in the top 15 and 20%; in this manner, Archer_11_10.csv Archer_11_15.csv, and Archer_11_20.csv that 
+you'll find in all three foldres, are all the same archer: Archer_11.  (The Archer numbers originally corresponded to the order of the 
+.dat files as viewed in a Windows directory, but I'm not sure if that's true anymore.  
+
+In any case, here you would just pick whichever of the three files corresponds to the top X% you want to use, and use those csv's.  
+At this point I didn't concantenate these files togethter into a single one like I did the first group, but I wanted to just get this up,
+without too much delay, and it seemed easy enough to cut and paste rows or columns how you want in Excel or whatever.
