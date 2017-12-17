@@ -12,12 +12,14 @@ were filtered out.  Seemed mayhap a bit too large of a subset leftover to be wor
 couple of files.
 
 _______
-First, let's look at the directory Archer_Post_Season_Rows:
+Firstly, let's look at the directory Archer_Post_Season_Rows:
 
-First, you'll see a bunch of Archer_X.csv files.  These each contain post-season scores from those 126 archers who had at least one.
+First, you should see a bunch of Archer_X.csv files.  These each contain post-season scores from those 126 archers who had at least one.
 They contain the full dataframe data still, i.e: school, grade, score, etc.  After these files, you'll see full_post_season_dictionary.csv, 
 which is just the Archer_X rows all concatenated into one file.  And again if you look at the dates in anything in this Post_season directory,
-you should see only dates between ~April-July in there.  The final csv file here, called archer_means_vs_nmbr_post_season_scores, is what the
+you should see only dates between ~April-July in there.
+
+The final csv file here, called archer_means_vs_nmbr_post_season_scores, is what the
 name implies:  all 150 archers in a list, with their career means alongside their "Number of post season scores".  The means of the 24 archers
 with no post season scores have been reinserted here, with Nmbr_Post_Season_Scores = 0.
 
