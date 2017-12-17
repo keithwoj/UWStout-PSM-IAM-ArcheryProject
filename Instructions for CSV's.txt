@@ -4,7 +4,8 @@ So previously I talked about two types of "champs":
 
 - those whose career means within some top x percentile
 
-To myself I've been refer to the groups as "post season" and "champs", respectively, so note that I've named my files that way.
+To myself I've been referring to the groups as "post season" and "champs", respectively, so note that I've named my files with that 
+in mind.
 
 When I looked at the post-season group (defined as archers with at least one score within ~April-July of any year), only 24/150 archers 
 were filtered out.  Seemed a bit too large of a subset leftover to be worth exploring separately, but I did go ahead and make a 
